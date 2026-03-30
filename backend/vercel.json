@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/server.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "crons": [
+    {
+      "path": "/api/cron/monthly-draw",
+      "schedule": "0 10 1 * *"
+    },
+    {
+      "path": "/api/cron/lapsed-check",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/analytics-snapshot",
+      "schedule": "0 23 28-31 * *"
+    }
+  ]
+}
